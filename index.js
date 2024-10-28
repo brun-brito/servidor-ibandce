@@ -24,8 +24,9 @@ async function atualizarNoticias() {
     const noticiasMaisRecentes = noticiasOrdenadas.slice(0, 3);
 
     // Atualizar o cache, mantendo as anteriores se necessário
+    console.log('Iniciando atualização...');
     cacheNoticias = combinarNoticias(cacheNoticias, noticiasMaisRecentes);
-    console.log('Cache atualizado.');
+    console.log('Cache atualizado!');
   } catch (error) {
     console.error('Erro ao buscar notícias:', error);
   }
