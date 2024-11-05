@@ -26,7 +26,7 @@ async function atualizarNoticias() {
     // Atualizar o cache, mantendo as anteriores se necessário
     console.log('Iniciando atualização...');
     cacheNoticias = combinarNoticias(cacheNoticias, noticiasMaisRecentes);
-    console.log('Cache atualizado!');
+    console.log('Notícias atualizadas!');
   } catch (error) {
     console.error('Erro ao buscar notícias:', error);
   }
@@ -46,13 +46,20 @@ function combinarNoticias(antigas, novas) {
 
 // Agendamento da atualização a cada 1 hora
 cron.schedule('0 * * * *', () => {
-  console.log('Executando tarefa de atualização de notícias');
+  console.log('Executando atualização de notícias após 1 hora');
   atualizarNoticias();
 });
 
 // Endpoint para servir as últimas 3 notícias
 app.get('/noticias', (req, res) => {
   res.json(cacheNoticias);
+});
+
+// Endpoint para atualizar notícias manualmente
+app.get('/atualizar-noticias', (req, res) => {
+  console.log('Atualização manual de notícias requisitada');
+  atualizarNoticias();
+  res.send('Notícias atualizadas!');
 });
 
 // Iniciar o servidor
