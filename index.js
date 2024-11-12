@@ -23,7 +23,7 @@ async function converterImagemParaPng(imagemUrl, nomeArquivo) {
     
     await sharp(buffer).png().toFile(caminhoImagem);
     
-    return `/imagens/${nomeArquivo}.png`;
+    return `https://servidor-noticias-ibandce-2820808168f9.herokuapp.com/imagens/${nomeArquivo}.png`;
   } catch (error) {
     console.error('Erro ao converter imagem:', error);
     return null;
@@ -122,5 +122,6 @@ app.use('/imagens', express.static(path.join(__dirname, 'imagens_cache')));
 // Iniciar o servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Veja as notícias: LOCAL - http://localhost:${PORT}/noticias\nWEB: https://servidor-noticias-ibandce-2820808168f9.herokuapp.com/noticias`);
   atualizarNoticias(); // Primeira execução ao iniciar o servidor
 });
