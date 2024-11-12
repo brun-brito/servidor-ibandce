@@ -64,7 +64,7 @@ async function atualizarNoticias() {
       new Date(b.imagem.date) - new Date(a.imagem.date)
     );
 
-    const noticiasMaisRecentes = noticiasOrdenadas.slice(0, 3);
+    const noticiasMaisRecentes = noticiasOrdenadas.slice(0, 4);
 
     for (let noticia of noticiasMaisRecentes) {
       const nomeArquivo = path.basename(noticia.imagem.url, path.extname(noticia.imagem.url));
@@ -91,7 +91,7 @@ function combinarNoticias(antigas, novas) {
   const combinadas = [...novas];
 
   // Preenche com antigas se houver menos de 3 notícias novas
-  while (combinadas.length < 3 && antigas.length > 0) {
+  while (combinadas.length < 4 && antigas.length > 0) {
     combinadas.push(antigas.shift());
   }
 
