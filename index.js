@@ -60,11 +60,7 @@ async function atualizarNoticias() {
       'https://ibandce.com.br/wp-json/minha-api/v1/categoria/midia-externa'
     );
 
-    const noticiasOrdenadas = noticias.sort((a, b) =>
-      new Date(b.imagem.date) - new Date(a.imagem.date)
-    );
-
-    const noticiasMaisRecentes = noticiasOrdenadas.slice(0, 4);
+    const noticiasMaisRecentes = noticias.slice(0, 4);
 
     for (let noticia of noticiasMaisRecentes) {
       const nomeArquivo = path.basename(noticia.imagem.url, path.extname(noticia.imagem.url));
